@@ -32,7 +32,7 @@ class BAEBridge extends BridgeAbstract
         $html = getSimpleHTMLDOM($url);
 
         $tz = new DateTimeZone('Europe/Paris');
-        $now = new DateTime("now", new DateTimeZone('Europe/Paris'));
+        $now = new DateTime('now', new DateTimeZone('Europe/Paris'));
         $tzOffset = $tz->getOffset($now);
 
         $annonces = $html->find('main article');
@@ -76,7 +76,7 @@ class BAEBridge extends BridgeAbstract
             $timestampStr = str_replace('h', ':', $timestampStr);
             $timestampStrSplit = explode('/', $timestampStr);
             if (count($timestampStrSplit) === 3) {
-                $timestampStr = join("/", [$timestampStrSplit[1], $timestampStrSplit[0], $timestampStrSplit[2]]);
+                $timestampStr = join('/', [$timestampStrSplit[1], $timestampStrSplit[0], $timestampStrSplit[2]]);
             }
             $item['timestamp'] = strtotime($timestampStr) - $tzOffset;
 
